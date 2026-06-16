@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS tareas (
+    id             INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    texto          VARCHAR(255) NOT NULL,
+    completada     TINYINT(1)   NOT NULL DEFAULT 0,
+    fecha_creacion DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
