@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - "8080:80"
+      - "${PORT:-8080}:80"
     environment:
       DB_HOST: db
       DB_NAME: tareas_db
@@ -11,6 +11,16 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: "0.50"
 
   db:
     image: mysql:8.0
@@ -20,13 +30,18 @@ services:
       MYSQL_PASSWORD: alumno123
       MYSQL_ROOT_PASSWORD: rootpass
     volumes:
-      - db_data:/var/lib/mysql
+      - dockerexample_db_data:/var/lib/mysql
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass"]
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: "0.50"
 
 volumes:
-  db_data:
+  dockerexample_db_data:
