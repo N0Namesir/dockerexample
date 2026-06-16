@@ -10,7 +10,7 @@
  * );
  */
 
-$host   = getenv('DB_HOST') ?: 'localhost';
+$host   = getenv('DB_HOST') ?: 'db';
 $dbname = getenv('DB_NAME') ?: 'tareasdb';
 $user   = getenv('DB_USER') ?: 'alumno';
 $pass   = getenv('DB_PASS') ?: 'alumno123';
