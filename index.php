@@ -11,9 +11,9 @@
  */
 
 $host   = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME') ?: 'db_alumnoXX';
-$user   = getenv('DB_USER') ?: 'alumnoXX';
-$pass   = getenv('DB_PASS') ?: 'alumnoXX';
+$dbname = getenv('DB_NAME') ?: 'tareasdb';
+$user   = getenv('DB_USER') ?: 'alumno';
+$pass   = getenv('DB_PASS') ?: 'alumno123';
 
 try {
     $pdo = new PDO(
